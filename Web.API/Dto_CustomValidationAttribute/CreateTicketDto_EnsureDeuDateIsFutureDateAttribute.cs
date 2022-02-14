@@ -7,11 +7,11 @@ using Test.API.Models;
 
 namespace Test.API.ModelValidation
 {
-    public class Create_EnsureDeuDateIsFutureDate : ValidationAttribute
+    public class CreateTicketDto_EnsureDeuDateIsFutureDateAttribute : ValidationAttribute
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            var ticket = validationContext.ObjectInstance as CreateTicket;
+            var ticket = validationContext.ObjectInstance as CreateTicketDto;
 
             //if (ticket.Deudate.HasValue)
             //{
@@ -22,14 +22,7 @@ namespace Test.API.ModelValidation
             //}
 
 
-            //when creating ticket , ticket due date has to be in the future
-            if(ticket !=null && ticket.TicketId != null)
-            {
-                if(ticket.Deudate.HasValue && ticket.Deudate.Value < DateTime.Now)
-                {
-                    return new ValidationResult("Due date has to be in the future. ");
-                }
-            }
+           
             return ValidationResult.Success;
 
         }
